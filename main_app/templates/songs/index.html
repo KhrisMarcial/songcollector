@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Song List</h1>
+
+{% for song in songs %}
+    <div class="card">
+        <a href="{% url 'detail' song.id %}">
+            <div class="card-content">
+            <span class="card-title">{{ song.name }}</span>
+                <p>Breed: {{ song.genre }}</p>
+                <p>Album: {{ song.album }}</p>
+                <p>Artist: {{ song.artist }}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}
