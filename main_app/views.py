@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Song
 from django.http import HttpResponse
+
 
 def home(request):
     return render(request, 'home.html')
@@ -15,3 +17,16 @@ def songs_index(request):
 def songs_detail(request,  song_id): 
     song = Song.objects.get(id=song_id)
     return render(request, 'songs/detail.html', { 'song': song })
+
+class SongCreate(CreateView):
+    model = Song
+    fields = '__all__'
+    success_url = '/songs/'
+
+class SongUpdate(UpdateView):
+    model = Song
+    fields = '__all__'
+
+class SongDelete(DeleteView):
+    model = Song
+    success_url = '/songs/'
